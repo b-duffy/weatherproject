@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="style.css" rel="stylesheet">
+    <link href="resources/weather.ico" rel="icon">
+    <title>Weather Journal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet"> 
+</head>
+<body>
+    <header>
+        <h1>Head in the Clouds: A Weather Journal</h1>
+    </header>
+    <div class="main-section">
+        <div class="zip-box">
+            <form>
+                <label for="zip">Zip code</label><br>
+                <input type ="text" id="zip" name="zip" placeholder="Enter zip code here">
+            </form>
+        </div>
+
+        <div class="feelings-box">
+            <form>
+                <label for="entry">How are you feeling?</label><br>
+                <textarea id="feelings" rows="5" cols="50" placeholder="Enter your feelings here"></textarea>
+            </form>
+            <button id="create" type="submit">Create entry</button>
+        </div>
+        <div id="journal">
+            <h2>Previous entries</h2>
+            <div id="entryContainer"></div>
+            <div id = "date"></div> 
+            <div id = "temp"></div>
+            <div id = "content"></div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
