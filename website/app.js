@@ -16,16 +16,24 @@ const create= document.getElementById('create').addEventListener("click", perfor
 
 /* Function called by event listener */
 
-function performAction(){
-    getWeather().then(newData => postData('/create', newData));
-    console.log(feelings.value);
+function performAction(e){
+    getWeather(baseURL, zip, apiKey)
+    .then(function(newData){
+        postData('/create', {
+            temp: newData.main.temp,
+            feelings: feelings.value,
+            date: date
+        })
+    })
+    .then(getData('/all'))       
 };
 
 
 /* Function to GET Web API Data*/
-const getWeather = async (url) => {
+const getWeather = async (baseURL, zip, apiKey) => {
     const response = await fetch(`${baseURL}${zip.value}${apiKey}`);
     const weatherData = await response.json();
+    console.log(weatherData);
     return weatherData;
 };
 
