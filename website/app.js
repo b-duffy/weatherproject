@@ -12,11 +12,10 @@ let feelings = document.getElementById('feelings');
 
 
 //Add event listener to button
-const create= document.getElementById('create').addEventListener("click", performAction);
+document.querySelector('#create').addEventListener("click", performAction);
 
 /* Function called by event listener */
-
-function performAction(e){
+function performAction(){
     getWeather(baseURL, zip, apiKey)
     .then(function(newData){
         postData('/create', {
@@ -25,7 +24,8 @@ function performAction(e){
             date: date
         })
     })
-    .then(getData('/all'))       
+    .then(getData('/all'))
+    .then(updateUI());
 };
 
 
@@ -63,12 +63,28 @@ const postData = async (url = '', data = {}) => {
 const getData = async (url='') => {
     const request = await fetch(url);
     try {
-        const allData = await request.json()
+        let allData = await request.json()
+        console.log(allData)
+        return allData;
     }
     catch(error) {
         console.log("error",error);
     }
 };
 
+const newDate = document.getElementById('date');
+const newTemp = document.getElementById('temp');
+const newContent = document.getElementById('content');
 
-
+const updateUI = async () => {
+    const request = await fetch('/all');
+    const allData = await request.json();
+    try{
+      newDate.innerHTML = `${allData.newEntry[allData.newEntry.length-1].date}`;
+      newTemp.innerHTML = `${allData.newEntry[allData.newEntry.length-1].temp}`;
+      newContent.innerHTML = `${allData.newEntry[allData.newEntry.length-1].feelings}`;
+  
+    } catch(error){
+      console.log("error", error);
+    }
+  };
