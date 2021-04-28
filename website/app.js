@@ -1,5 +1,5 @@
-// Personal API Key for OpenWeatherMap API
-const apiKey = '&appid=ededebae0b3abcd3f1394abbea507c47&units=imperial';
+// Personal API Key for OpenWeatherMap API -- insert APP ID before using
+const apiKey = '&appid=[APPIDHERE]&units=imperial';
 const baseURL= 'https://api.openweathermap.org/data/2.5/weather?zip=';
 
 //Get date value and make it readable 
