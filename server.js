@@ -21,6 +21,7 @@ app.use(cors());
 
 // Initialize the main project folder
 app.use(express.static('website'));
+
 // Spin up the server
 const port = 3000;
 const server = app.listen(port, listening);
@@ -42,6 +43,6 @@ app.get('/all', function (req, res){
 let data = [];
 
 app.post('/create', function(req, res){
-    data.push(req.body)
+    data.push(req.body);
     projectData["newEntry"] = data;
 });
