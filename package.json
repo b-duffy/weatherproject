@@ -1,0 +1,30 @@
+{
+  "name": "weatherapp",
+  "version": "1.0.0",
+  "description": "An express application",
+  "main": "server.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "body-parser": "^1.19.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/br3nd4nduffy/weatherproject.git"
+  },
+  "keywords": [
+    "express",
+    "server"
+  ],
+  "author": "Brendan Duffy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/br3nd4nduffy/weatherproject/issues"
+  },
+  "homepage": "https://github.com/br3nd4nduffy/weatherproject#readme"
+}
