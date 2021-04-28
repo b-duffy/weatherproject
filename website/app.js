@@ -1,5 +1,5 @@
 // Personal API Key for OpenWeatherMap API
-const apiKey = '&appid=ededebae0b3abcd3f1394abbea507c47';
+const apiKey = '&appid=ededebae0b3abcd3f1394abbea507c47&units=imperial';
 const baseURL= 'https://api.openweathermap.org/data/2.5/weather?zip=';
 
 //Get date value and make it readable 
@@ -7,12 +7,13 @@ let d = new Date()
 let date = `${d.getMonth()+1}/${d.getDate()}/${d.getFullYear()}`
 // Event listener to add function to existing HTML DOM element
 
+
 let zip = document.getElementById('zip');
 let feelings = document.getElementById('feelings');
 
 
 //Add event listener to button
-document.querySelector('#create').addEventListener("click", performAction);
+document.querySelector('#generate').addEventListener("click", performAction);
 
 /* Function called by event listener */
 function performAction(){
@@ -24,17 +25,21 @@ function performAction(){
             date: date
         })
     })
-    .then(getData('/all'))
-    .then(updateUI());
+    .then(() => getData('/all'))
+    .then(() => updateUI());
 };
 
 
 /* Function to GET Web API Data*/
 const getWeather = async (baseURL, zip, apiKey) => {
-    const response = await fetch(`${baseURL}${zip.value}${apiKey}`);
-    const weatherData = await response.json();
-    console.log(weatherData);
-    return weatherData;
+    if (zip.validity.patternMismatch || zip.value == "") {
+        alert('Please enter zip code in XXXXX format');  
+      } else {
+            const response = await fetch(`${baseURL}${zip.value}${apiKey}`);
+            const weatherData = await response.json();
+            console.log(weatherData);
+            return weatherData;
+    }
 };
 
 
@@ -80,9 +85,9 @@ const updateUI = async () => {
     const request = await fetch('/all');
     const allData = await request.json();
     try{
-      newDate.innerHTML = `${allData.newEntry[allData.newEntry.length-1].date}`;
-      newTemp.innerHTML = `${allData.newEntry[allData.newEntry.length-1].temp}`;
-      newContent.innerHTML = `${allData.newEntry[allData.newEntry.length-1].feelings}`;
+      newDate.innerHTML = `Date: ${allData.newEntry[allData.newEntry.length-1].date}`;
+      newTemp.innerHTML = `Temperature: ${allData.newEntry[allData.newEntry.length-1].temp}`;
+      newContent.innerHTML = `How I'm feeling: ${allData.newEntry[allData.newEntry.length-1].feelings}`;
   
     } catch(error){
       console.log("error", error);
